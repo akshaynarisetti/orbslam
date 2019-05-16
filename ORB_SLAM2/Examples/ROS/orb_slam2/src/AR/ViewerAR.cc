@@ -2,7 +2,7 @@
 * This file is part of ORB-SLAM2.
 *
 * Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
-* For more information see <https://github.com/raulmur/ORB_SLAM2>
+* For more information see <https://github.com/raulmur/orb_slam2>
 *
 * ORB-SLAM2 is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 using namespace std;
 
-namespace ORB_SLAM2
+namespace orb_slam2
 {
 
 const float eps = 1e-4;
@@ -235,7 +235,7 @@ void ViewerAR::Run()
 
 }
 
-void ViewerAR::SetImagePose(const cv::Mat &im, const cv::Mat &Tcw, const int &status, const vector<cv::KeyPoint> &vKeys, const vector<ORB_SLAM2::MapPoint*> &vMPs)
+void ViewerAR::SetImagePose(const cv::Mat &im, const cv::Mat &Tcw, const int &status, const vector<cv::KeyPoint> &vKeys, const vector<orb_slam2::MapPoint*> &vMPs)
 {
     unique_lock<mutex> lock(mMutexPoseImage);
     mImage = im.clone();

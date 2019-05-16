@@ -2,7 +2,7 @@
 * This file is part of ORB-SLAM2.
 *
 * Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
-* For more information see <https://github.com/raulmur/ORB_SLAM2>
+* For more information see <https://github.com/raulmur/orb_slam2>
 *
 * ORB-SLAM2 is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
 using namespace std;
 
 
-ORB_SLAM2::ViewerAR viewerAR;
+orb_slam2::ViewerAR viewerAR;
 bool bRGB = true;
 
 cv::Mat K;
@@ -47,11 +47,11 @@ cv::Mat DistCoef;
 class ImageGrabber
 {
 public:
-    ImageGrabber(ORB_SLAM2::System* pSLAM):mpSLAM(pSLAM){}
+    ImageGrabber(orb_slam2::System* pSLAM):mpSLAM(pSLAM){}
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg);
 
-    ORB_SLAM2::System* mpSLAM;
+    orb_slam2::System* mpSLAM;
 };
 
 int main(int argc, char **argv)
@@ -61,13 +61,13 @@ int main(int argc, char **argv)
 
     if(argc != 3)
     {
-        cerr << endl << "Usage: rosrun ORB_SLAM2 Mono path_to_vocabulary path_to_settings" << endl;        
+        cerr << endl << "Usage: rosrun orb_slam2 Mono path_to_vocabulary path_to_settings" << endl;        
         ros::shutdown();
         return 1;
     }
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,false);
+    orb_slam2::System SLAM(argv[1],argv[2],orb_slam2::System::MONOCULAR,false);
 
 
     cout << endl << endl;
@@ -120,7 +120,7 @@ int main(int argc, char **argv)
         DistCoef.at<float>(4) = k3;
     }
 
-    thread tViewer = thread(&ORB_SLAM2::ViewerAR::Run,&viewerAR);
+    thread tViewer = thread(&orb_slam2::ViewerAR::Run,&viewerAR);
 
     ros::spin();
 
@@ -152,7 +152,7 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     cv::Mat imu;
     cv::Mat Tcw = mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
     int state = mpSLAM->GetTrackingState();
-    vector<ORB_SLAM2::MapPoint*> vMPs = mpSLAM->GetTrackedMapPoints();
+    vector<orb_slam2::MapPoint*> vMPs = mpSLAM->GetTrackedMapPoints();
     vector<cv::KeyPoint> vKeys = mpSLAM->GetTrackedKeyPointsUn();
 
     cv::undistort(im,imu,K,DistCoef);

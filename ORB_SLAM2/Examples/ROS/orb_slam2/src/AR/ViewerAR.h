@@ -2,7 +2,7 @@
 * This file is part of ORB-SLAM2.
 *
 * Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
-* For more information see <https://github.com/raulmur/ORB_SLAM2>
+* For more information see <https://github.com/raulmur/orb_slam2>
 *
 * ORB-SLAM2 is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 #include <string>
 #include"../../../include/System.h"
 
-namespace ORB_SLAM2
+namespace orb_slam2
 {
 
 class Plane
@@ -64,7 +64,7 @@ public:
         mT=1e3/fps;
     }
 
-    void SetSLAM(ORB_SLAM2::System* pSystem){
+    void SetSLAM(orb_slam2::System* pSystem){
         mpSystem = pSystem;
     }
 
@@ -84,7 +84,7 @@ public:
 private:
 
     //SLAM
-    ORB_SLAM2::System* mpSystem;
+    orb_slam2::System* mpSystem;
 
     void PrintStatus(const int &status, const bool &bLocMode, cv::Mat &im);
     void AddTextToImage(const std::string &s, cv::Mat &im, const int r=0, const int g=0, const int b=0);
